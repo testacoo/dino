@@ -1,0 +1,31 @@
+containers:
+  pre:
+    setup:
+    - !Alpine v3.12
+
+  frontend:
+    setup:
+    - !Alpine v3.12
+    - !Install [util-linux]
+    - !YarnDependencies
+    - !Remove /bin/bbsuid  # this fails to cache
+    environ:
+      PATH: /usr/lib/node_modules/.bin:/usr/bin:/bin
+      NODE_PATH: /usr/lib/node_modules
+    volumes:
+      /work/node_modules: !BindRO /vagga/root/usr/lib/node_modules
+
+commands:
+
+  _mkdir: !Command
+    container: pre
+    run: |
+      mkdir -p node_modules
+
+  run: !Command
+    description: Run parcel server
+    container: frontend
+    prerequisites: [_mkdir]
+    environ:
+      PARCEL_WORKERS: 2
+    run: [parcel, --no-autoinstall, -p, 8800, index.html]

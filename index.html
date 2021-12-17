@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="./main.css">
+    </head>
+    <body>
+        <div class="canvas">
+          <img id="main_img"
+            src="./location_images/welcome.svg"></div>
+        </div>
+        <div class="caption">
+           <span id="caption">
+           Натисніть мікрофон щоб почати гру
+           </span>
+           <div id="choices">
+           </div>
+        </div>
+        <div class="inventory">
+            <span class="label">Монети: </span>
+            <span class="value" id="coins">0</span>
+        </div>
+        <div class="buttons">
+          <button class="button" id="restart">
+            <img class="button__icon" src="./icons/restart.svg">
+          </button>
+          <button class="button" id="accessible">
+            <img class="button__icon" src="./icons/deaf.svg">
+          </button>
+          <button class="button" id="mute">
+            <img class="button__icon" src="./icons/mute.svg">
+          </button>
+          <button class="button" id="microphone">
+            <img class="button__icon" src="./icons/mic.svg">
+          </button>
+        </div>
+        <div id="confetti_center"></div>
+
+        <script src="./game.js"></script>
+    </body>
+</html>
